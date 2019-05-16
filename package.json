@@ -1,0 +1,35 @@
+{
+  "name": "graphql_api",
+  "version": "1.0.0",
+  "description": "GraphQL api using node.js and mongodb",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isignin/graphql_api.git"
+  },
+  "keywords": [
+    "graphql",
+    "node.js",
+    "mongodb"
+  ],
+  "author": "Stephen Loo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isignin/graphql_Api/issues"
+  },
+  "homepage": "https://github.com/isignin/graphql_Api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "express-graphql": "^0.8.0",
+    "graphql": "^14.3.0",
+    "mongoose": "^5.5.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
+}
