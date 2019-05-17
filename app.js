@@ -44,7 +44,8 @@ app.use((req, res, next) => {
             title: String!
             description: String!
             price: Float!
-            date: String!               
+            date: String!
+            creator: String!                
         }
 
         input EventInput {
@@ -58,7 +59,8 @@ app.use((req, res, next) => {
             _id: ID!
             email: String!
             name: String!
-            password: String               
+            password: String 
+            createdEvents: [String!]              
         }
 
         input UserInput {
@@ -100,12 +102,24 @@ app.use((req, res, next) => {
                 title: args.eventInput.title,
                 description: args.eventInput.description,
                 price: +args.eventInput.price,
-                date: new Date(args.eventInput.date)
+                date: new Date(args.eventInput.date),
+                creator: "5cdec68771ec0d62f6975767"
             });
+            let createdEvent;
             return event.save()
               .then(result => {
-                console.log(result);
-                return { ...result._doc, _id: result.id };
+                createdEvent =  { ...result._doc, _id: result.id };
+                return User.findById("5cdec68771ec0d62f6975767")
+              })
+              .then (user => {
+                  if(!user){
+                    throw new Error('User does not exist');
+                  }
+                  user.createdEvents.push(event);
+                  return user.save();
+              })
+              .then (result => {
+                return createdEvent;
               })
               .catch(err => {
                   console.log(err);

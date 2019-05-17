@@ -1,4 +1,4 @@
-#GraphQL API using Node.js, MongoDB
+# GraphQL API using Node.js, MongoDB
 
 ### Work in Progress
 ```
