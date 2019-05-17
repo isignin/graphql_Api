@@ -1,5 +1,10 @@
 #GraphQL API using Node.js, MongoDB
 
+### Work in Progress
+```
+If you see this notice, it means that this project is incomplete
+```
+
 ## Project setup
 ```
 npm install
@@ -9,7 +14,8 @@ create config.sys in the root path with the followings:
     module.exports = {
         "MONGO_USER" : "mongo_user",
         "MONGO_PW" : "mongo_password",
-        "JWT_KEY" : "secret key for JsonWebToken"
+        "JWT_KEY" : "secret key for JsonWebToken",
+        "MONGO_DB": "database name"
     };
 ```
 
