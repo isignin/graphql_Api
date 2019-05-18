@@ -45,7 +45,7 @@ app.use((req, res, next) => {
             description: String!
             price: Float!
             date: String!
-            creator: String!                
+            creator: User!                
         }
 
         input EventInput {
@@ -60,7 +60,7 @@ app.use((req, res, next) => {
             email: String!
             name: String!
             password: String 
-            createdEvents: [String!]              
+            createdEvents: [Event!]              
         }
 
         input UserInput {
@@ -86,10 +86,17 @@ app.use((req, res, next) => {
     `),
     rootValue: {
         events: () => {
-            return Event.find()
+            return Event.find().populate('creator')
+            // populate a feature of mongoose to populate with the values of creator obj.
             .then(events => {
                 return events.map(event => {
-                    return {...event._doc, _id: event.id };
+                    return {
+                        ...event._doc, 
+                        _id: event.id,
+                        creator: {
+                            ...event._doc.creator._doc,
+                            _id: event._doc.creator.id
+                        } };
                     //event.id is mongoose translation of the event._doc._id.toString()
                 });
             })
